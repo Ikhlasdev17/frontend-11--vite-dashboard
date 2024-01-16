@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.wrapper {
+	@apply h-screen w-[100vw] flex bg-bgGray;
+
+	#sidebar-parent {
+		@apply h-screen bg-white w-[260px] sticky;
+
+		.sidebar {
+			@apply h-screen flex flex-col relative;
+
+			&-toggler {
+				@apply w-[42px] h-[42px] bg-white rounded-full shadow-sm cursor-pointer hidden items-center justify-center text-xl absolute right-[-20px] top-[30px] transition-all duration-200 hover:bg-gray-50 text-grayText active:opacity-65;
+			}
+
+			.logo {
+				@apply py-[13px] px-[33px] text-center mx-auto my-4;
+			}
+
+			.sidebar-menu-title {
+				@apply px-[34px] mb-[18px] text-textColor text-[14px] font-[400];
+			}
+
+			ul {
+				@apply px-[10px] mb-[25px];
+
+				li {
+					@apply px-[24px] py-[8px] flex gap-[10px] items-center cursor-pointer rounded-[10px] text-grayText;
+
+					&.active {
+						@apply bg-primaryBlue text-white;
+					}
+
+					i {
+						@apply text-[20px];
+					}
+
+					span {
+						@apply text-[12px] font-[400];
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		#sidebar-parent {
+			@apply fixed left-[-260px] transition-all duration-200;
+
+			.sidebar {
+				&-toggler {
+					@apply right-[-65px] transition-all duration-200 flex;
+				}
+			}
+
+			&.open {
+				@apply left-0;
+
+				.sidebar {
+					&-toggler {
+						@apply right-[-20px];
+
+						i {
+							@apply transform rotate-180;
+						}
+					}
+				}
+			}
+		}
+	}
+}
